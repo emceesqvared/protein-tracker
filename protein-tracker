@@ -1,0 +1,235 @@
+import pprint
+
+foodDatabase = {
+    'Unit' : {},
+    'Cup' : {},
+    'Oz' : {},
+    'T' : {}
+}
+
+foodList = {}
+
+
+
+def main():
+    while True:
+        res = input('Add a food, (V)iew protein, or type (D)one: ')
+        res = res.capitalize()
+        if res == 'D' or res == 'Done':
+            pprint.pprint(foodList)
+            addTotalProtein(foodList)
+            break
+        elif res == 'V' or res == 'View':
+            pprint.pprint(foodList)
+            addTotalProtein(foodList)
+        elif searchFood(res):
+            getFoodInfo(res)
+            quantity = input('How much? ')
+            while True:
+                try:
+                    quantity = float(quantity)
+                    addToFoodList(foodList, res, quantity)
+                    break
+                except ValueError:
+                    quantity = input('Please enter a number: ')
+        else:
+            print('This food does not exist in the database.')
+            ans = input('Would you like to add it to the food list? (Y) or (N): ')
+            while True:
+                if ans.upper() == 'Y':
+                    protein = input('How many grams of protein? ')
+                    while True:
+                        try:                            
+                            protein = float(protein)
+                            if res in foodList:
+                                foodList[res] += protein
+                            else:
+                                foodList[res] = protein
+                            break
+                        except ValueError:
+                            protein = input('Please enter a number: ')
+                    break
+                elif ans.upper() == 'N':
+                    break
+                else:
+                    ans = input('Please enter (Y) or (N): ')
+
+
+
+
+
+
+
+def addUnitItem(item, protein):
+    item = item.capitalize()
+    foodDatabase['Unit'][item] = protein
+
+
+def addCupItem(item, protein):
+    item = item.capitalize()
+    foodDatabase['Cup'][item] = protein
+
+
+def addOzItem(item, protein):
+    item = item.capitalize()
+    foodDatabase['Oz'][item] = protein
+    
+    
+def addTItem(item, protein):
+    item = item.capitalize()
+    foodDatabase['T'][item] = protein
+
+
+def searchFood(x):
+    t = []
+    x.capitalize
+    for unit, food in foodDatabase.items():
+        for name in food:
+                t.append(name)
+    if x in t:
+        return True
+    else:
+        return False
+
+
+
+def getFoodInfo(x):
+    x = x.capitalize()
+    if searchFood(x):
+        for unit, food in foodDatabase.items():
+            for name in food:
+                if x == name:
+                    print(name + ': measured in {}s.'.format(unit))
+                    print(food[name], 'grams of protein per {}.'.format(unit))
+    else:
+        print('This food does not exist in the database.')
+
+
+
+def addToFoodList(foodList, x, quantity=1):
+    x = x.capitalize()
+    for unit, food in foodDatabase.items():
+        for name in food:
+            if x == name:
+                if name in foodList:
+                    if quantity != 1:
+                        foodList[name] += food[name] * quantity
+                    else:
+                        foodList[name] += food[name]
+                else:
+                    if quantity != 1:
+                        foodList[name] = food[name] * quantity
+                    else:
+                        foodList[name] = food[name]
+
+
+
+
+
+
+def addTotalProtein(foodList):
+    protein = foodList.values()
+    total = sum(protein)
+    print('You have consumed {} grams of protein today.'.format(total))
+
+
+
+
+addUnitItem('Banana', 1.3)
+addUnitItem('Brazil nut', 0.3)
+addCupItem('Greek yogurt', 20)
+addOzItem('80% ground beef', 4.75)
+addOzItem('90% ground beef', 5.5)
+
+#addOzItem('Ham', 50)
+
+addOzItem('Chicken breast', 6)
+addOzItem('Chicken thigh', 4.75)
+addOzItem('Chicken wing or drum', 5)
+addTItem('Honey', 0)
+addCupItem('Salad', 0.5)
+addTItem('Butter', 0)
+addTItem('Balsamic vinegar', 0)
+addTItem('Olive oil', 0)
+addCupItem('Raspberries', 2)
+addCupItem('Rice', 11)
+addUnitItem('Bell pepper', 1)
+
+#addUnitItem('Carrot', 25)
+#addUnitItem('Meatball', 50)
+#addCupItem('Broccoli', 30)
+
+addUnitItem('Protein powder', 30)
+
+#addTItem('Nutritional yeast', 20)
+
+addUnitItem('Egg', 6)
+
+#addUnitItem('Corn', 100)
+#addUnitItem('Fruit smoothie', 530)
+#addCupItem('Popcorn', 30)
+
+addCupItem('Blueberries', 1)
+addTItem('Sugar', 0)
+addTItem('Powdered sugar', 0)
+addTItem('Brown sugar', 0)
+addUnitItem('Strawberries', 0.1)
+
+#addCupItem('Pineapple', 80)
+#addCupItem('Hummus', 560)
+#addUnitItem('Brownie', 200)
+
+addUnitItem('Apple', 0)
+addCupItem('Pasta', 10.5)
+
+#addCupItem('Pasta with sauce', 310)
+
+addUnitItem('Pork chop', 23)
+addCupItem('Raisins', 4)
+addTItem('Peanut butter', 4)
+
+#addUnitItem('Banana bread', 300)
+#addUnitItem('Bacon', 40)
+#addCupItem('Peanuts', 680)
+
+addCupItem('Potatoes', 3)
+addCupItem('Sweet potatoes', 2)
+
+#addCupItem('Cauliflower', 25)
+#addCupItem('Watermelon', 45)
+#addCupItem('Blackberries', 65)
+#addUnitItem('Orange', 70)
+#addCupItem('Pineapple', 80)
+#addUnitItem('Tangerine', 50)
+#addUnitItem('Clementine', 45)
+#addCupItem('Green beans', 30)
+#addUnitItem('Asparagus', 3)
+#addOzItem('Steak', 60)
+#addCupItem('Mashed potatoes', 175)
+#addOzItem('Salmon', 60)
+
+addOzItem('Cheddar cheese', 6)
+addOzItem('Mozzarella', 5)
+
+#addCupItem('Tomatoes', 50)
+#addCupItem('Cherries', 90)
+
+addCupItem('Almonds', 24)
+addCupItem('Flour', 12)
+addTItem('Cream cheese', 1)
+addUnitItem('Ft hotdog', 12)
+addUnitItem('GE itl sausage', 17)
+addUnitItem('Jville ch brat', 14)
+addUnitItem('Jville smoked sausage', 9)
+addUnitItem('Brat', 13)
+addOzItem('Pork spare rib', 4.25)
+addUnitItem('Grapefruit', 2)
+addCupItem('Mango', 1)
+addCupItem('Whole milk', 8)
+
+
+
+
+
+if __name__ == '__main__':
+    main()
