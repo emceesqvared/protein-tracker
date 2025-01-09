@@ -13,7 +13,7 @@ foodList = {}
 
 def main():
     while True:
-        res = input('Add a food, (V)iew protein, or type (D)one: ')
+        res = input('Add a food, (V)iew protein, view (A)ll foods, or type (D)one: ')
         res = res.capitalize()
         if res == 'D' or res == 'Done':
             pprint.pprint(foodList)
@@ -22,6 +22,8 @@ def main():
         elif res == 'V' or res == 'View':
             pprint.pprint(foodList)
             addTotalProtein(foodList)
+        elif res == 'A' or res == 'All':
+            pprint.pprint(foodDatabase)
         elif searchFood(res):
             getFoodInfo(res)
             quantity = input('How much? ')
