@@ -169,8 +169,8 @@ addUnitItem('Egg', 6)
 
 #addUnitItem('Corn', 100)
 #addUnitItem('Fruit smoothie', 530)
-#addCupItem('Popcorn', 30)
 
+addCupItem('Popcorn', 21.3)
 addCupItem('Blueberries', 1)
 addTItem('Sugar', 0)
 addTItem('Powdered sugar', 0)
@@ -227,7 +227,7 @@ addUnitItem('Brat', 13)
 addOzItem('Pork spare rib', 4.25)
 addUnitItem('Grapefruit', 2)
 addCupItem('Mango', 1)
-addCupItem('Whole milk', 8)
+addCupItem('Milk', 8)
 
 
 
